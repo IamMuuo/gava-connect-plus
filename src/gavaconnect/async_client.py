@@ -1,5 +1,6 @@
 import httpx
 
+from gavaconnect.apis.invoice import InvoiceAPI
 from gavaconnect.apis.pin import PinAPI
 
 from .client_base import AsyncGavaConnectBase
@@ -16,6 +17,7 @@ class GavaConnect(AsyncGavaConnectBase):
         self.client = http_client or httpx.AsyncClient()
         self._owns_client = http_client is None
         self.pin = PinAPI(self)
+        self.invoice = InvoiceAPI(self)
 
     async def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

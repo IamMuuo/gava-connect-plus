@@ -1,5 +1,6 @@
 import httpx
 
+from gavaconnect.apis.invoice import SyncInvoiceAPI
 from gavaconnect.apis.pin import SyncPinAPI
 
 from .client_base import SyncGavaConnectBase
@@ -16,6 +17,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.client = http_client or httpx.Client()
         self._owns_client = http_client is None
         self.pin = SyncPinAPI(self)
+        self.invoice = SyncInvoiceAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

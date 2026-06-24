@@ -1,3 +1,5 @@
+from decimal import Decimal
+from typing import Any, List, Optional
 from pydantic import BaseModel, Field
 
 
@@ -28,3 +30,36 @@ class PinResponse(BaseModel):
     message: str = Field(alias="Message")
     status: str = Field(alias="Status")
     pin_data: PinData = Field(alias="PINDATA")
+
+
+class InvoiceDetails(BaseModel):
+    sales_date: str = Field(alias="salesDate")
+    transmission_date: str = Field(alias="transmissionDate")
+    invoice_date: str = Field(alias="invoiceDate")
+    total_item_count: int = Field(alias="totalItemCount")
+    supplier_pin: str = Field(alias="supplierPIN")
+    supplier_name: str = Field(alias="supplierName")
+    device_serial_number: str = Field(alias="deviceSerialNumber")
+    customer_pin: Optional[str] = Field(None, alias="customerPin")
+    customer_name: Optional[str] = Field(None, alias="customerName")
+    control_unit_invoice_number: str = Field(alias="controlUnitInvoiceNumber")
+    trader_system_invoice_number: str = Field(alias="traderSystemInvoiceNumber")
+
+    # Enforcing Decimal for all monetary elements
+    total_invoice_amount: Decimal = Field(alias="totalInvoiceAmount")
+    total_taxable_amount: Decimal = Field(alias="totalTaxableAmount")
+    total_tax_amount: Decimal = Field(alias="totalTaxAmount")
+    exemption_certificate_no: Optional[str] = Field(
+        None, alias="exemptionCertificateNo"
+    )
+    total_discount_amount: Decimal = Field(alias="totalDiscountAmount")
+
+    # Keeping item details flexible since KRA docs supply an empty array fallback
+    item_details: List[Any] = Field(alias="itemDetails")
+
+
+class InvoiceResponse(BaseModel):
+    response_code: int = Field(alias="responseCode")
+    response_desc: str = Field(alias="responseDesc")
+    status: str = Field(alias="status")
+    invoice_details: Optional[InvoiceDetails] = Field(None, alias="invoiceDetails")
