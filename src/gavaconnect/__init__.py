@@ -9,6 +9,8 @@ from .exceptions import (
     ValidationError,
     APIError,
     RateLimitError,
+    InvalidPINError,
+    InvalidTaxpayerIDError,
 )
 
 __all__ = [
@@ -21,6 +23,8 @@ __all__ = [
     "ValidationError",
     "RateLimitError",
     "APIError",
+    "InvalidTaxpayerIDError",
+    "InvalidPINError",
 ]
 
 

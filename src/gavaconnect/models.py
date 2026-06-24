@@ -63,3 +63,8 @@ class InvoiceResponse(BaseModel):
     response_desc: str = Field(alias="responseDesc")
     status: str = Field(alias="status")
     invoice_details: Optional[InvoiceDetails] = Field(None, alias="invoiceDetails")
+
+
+class IdLookupResponse(BaseModel):
+    taxpayer_pin: str = Field(alias="TaxpayerPIN")
+    taxpayer_name: str = Field(alias="TaxpayerName")

@@ -3,7 +3,12 @@ import respx
 from httpx import Response
 
 from gavaconnect import GavaConnect, GavaConnectSync
-from gavaconnect.exceptions import AuthenticationError, InvalidPINError
+from gavaconnect.exceptions import (
+    AuthenticationError,
+    InvalidPINError,
+    InvalidTaxpayerIDError,
+    ValidationError,
+)
 
 # Configuration fixtures for testing
 MOCK_CONFIG = {"consumer_key": "test_key", "consumer_secret": "test_secret"}
@@ -179,3 +184,79 @@ def test_sync_pin_check_success():
         assert pin_result.taxpayer_name == "ERICK GAVACONNECT"
         assert pin_result.taxpayer_type == "Individual"
         assert pin_result.is_active is True
+
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_async_check_by_id_success():
+    """Test successful async lookup of a PIN using an Identification document."""
+    client = GavaConnect(environment="sandbox", pin=MOCK_CONFIG)
+
+    respx.get(f"{BASE_URL}/v1/token/generate").mock(
+        return_value=Response(200, json={"access_token": "valid_token"})
+    )
+
+    mock_success = {
+        "TaxpayerPIN": "A000000000I",
+        "TaxpayerName": "YAMAS12 TEST OMINI01",
+    }
+    respx.post(f"{BASE_URL}/checker/v1/pin").mock(
+        return_value=Response(200, json=mock_success)
+    )
+
+    result = await client.pin.check_by_id(taxpayer_id="41789723", taxpayer_type="KE")
+    assert result.taxpayer_pin == "A000000000I"
+    assert result.taxpayer_name == "YAMAS12 TEST OMINI01"
+    await client.aclose()
+
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_async_check_by_id_invalid_error():
+    """Test that error code 30002 correctly converts into an InvalidTaxpayerIDError."""
+    client = GavaConnect(environment="sandbox", pin=MOCK_CONFIG)
+
+    respx.get(f"{BASE_URL}/v1/token/generate").mock(
+        return_value=Response(200, json={"access_token": "valid_token"})
+    )
+
+    mock_error = {
+        "RequestId": "526e10fa-3db9-4a3b-96f1-7c04b2e2252b1302",
+        "ErrorCode": "30002",
+        "ErrorMessage": "Invalid ID",
+    }
+    respx.post(f"{BASE_URL}/checker/v1/pin").mock(
+        return_value=Response(200, json=mock_error)
+    )
+
+    with pytest.raises(InvalidTaxpayerIDError) as exc_info:
+        await client.pin.check_by_id(taxpayer_id="INVALID_ID_999")
+
+    assert "Invalid ID" in str(exc_info.value)
+    await client.aclose()
+
+
+# --- Sync ID Checker Tests ---
+
+
+@respx.mock
+def test_sync_check_by_id_missing_param_error():
+    """Test that error code 400 maps directly to a validation structural failure."""
+    with GavaConnectSync(environment="sandbox", pin=MOCK_CONFIG) as client:
+        respx.get(f"{BASE_URL}/v1/token/generate").mock(
+            return_value=Response(200, json={"access_token": "valid_token"})
+        )
+
+        mock_missing_error = {
+            "requestId": "526e10fa-3db9-4a3b-96f1-7c04b2e2252b1303",
+            "errorCode": "400",
+            "errorMessage": "Missing mandatory parameter: TaxpayerID.",
+        }
+        respx.post(f"{BASE_URL}/checker/v1/pin").mock(
+            return_value=Response(200, json=mock_missing_error)
+        )
+
+        with pytest.raises(ValidationError) as exc_info:
+            client.pin.check_by_id(taxpayer_id="")
+
+        assert "Missing mandatory parameter" in str(exc_info.value)

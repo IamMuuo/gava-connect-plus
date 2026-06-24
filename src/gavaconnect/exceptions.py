@@ -28,6 +28,12 @@ class RateLimitError(GavaConnectError):
     """Raised when the API rate limit is exceeded."""
 
 
+class InvalidTaxpayerIDError(GavaConnectError):
+    """Raised when the provided identification number does not exist (Response Code: 30002)."""
+
+    pass
+
+
 class InvoiceNotFoundError(GavaConnectError):
     """Raised when the requested invoice does not exist (Response Code: 40001)."""
 
