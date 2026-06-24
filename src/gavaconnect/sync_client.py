@@ -2,6 +2,7 @@ import httpx
 
 from gavaconnect.apis.invoice import SyncInvoiceAPI
 from gavaconnect.apis.pin import SyncPinAPI
+from gavaconnect.apis.station import SyncStationAPI
 
 from .client_base import SyncGavaConnectBase
 from .exceptions import AuthenticationError
@@ -18,6 +19,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self._owns_client = http_client is None
         self.pin = SyncPinAPI(self)
         self.invoice = SyncInvoiceAPI(self)
+        self.station = SyncStationAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

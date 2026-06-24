@@ -68,3 +68,15 @@ class InvoiceResponse(BaseModel):
 class IdLookupResponse(BaseModel):
     taxpayer_pin: str = Field(alias="TaxpayerPIN")
     taxpayer_name: str = Field(alias="TaxpayerName")
+
+
+class StationData(BaseModel):
+    kra_pin: str = Field(alias="kraPin")
+    station_name: str = Field(alias="stationName")
+
+
+class StationResponse(BaseModel):
+    response_code: str = Field(alias="ResponseCode")
+    message: str = Field(alias="Message")
+    status: str = Field(alias="Status")
+    station_data: StationData = Field(alias="STATIONDATA")

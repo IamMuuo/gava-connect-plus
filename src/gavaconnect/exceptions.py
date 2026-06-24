@@ -34,6 +34,12 @@ class InvalidTaxpayerIDError(GavaConnectError):
     pass
 
 
+class InvalidStationPINError(GavaConnectError):
+    """Raised when the provided PIN is inactive or wrong for station lookups (Response Code: 84002)."""
+
+    pass
+
+
 class InvoiceNotFoundError(GavaConnectError):
     """Raised when the requested invoice does not exist (Response Code: 40001)."""
 

@@ -11,6 +11,7 @@ from .exceptions import (
     RateLimitError,
     InvalidPINError,
     InvalidTaxpayerIDError,
+    InvalidStationPINError,
 )
 
 __all__ = [
@@ -25,6 +26,7 @@ __all__ = [
     "APIError",
     "InvalidTaxpayerIDError",
     "InvalidPINError",
+    "InvalidStationPINError",
 ]
 
 

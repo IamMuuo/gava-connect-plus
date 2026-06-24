@@ -22,12 +22,17 @@ class BaseGavaConnect(ABC):
         environment: str = "sandbox",
         invoice: Optional[AuthConfig] = None,
         pin: Optional[AuthConfig] = None,
+        station: Optional[AuthConfig] = None,
     ) -> None:
         if environment not in ENVIRONMENTS:
             raise ValueError(f"Environment must be one of: {list(ENVIRONMENTS.keys())}")
 
         self.base_url = ENVIRONMENTS[environment]
-        self.configs = {"invoice": invoice, "pin": pin}
+        self.configs = {
+            "invoice": invoice,
+            "pin": pin,
+            "station": station,
+        }
         self.token_cache: dict[str, dict[str, Any]] = {}
 
     def _get_auth_config(self, scope: str) -> AuthConfig:
