@@ -1,5 +1,7 @@
 import httpx
 
+from gavaconnect.apis.pin import SyncPinAPI
+
 from .client_base import SyncGavaConnectBase
 from .exceptions import AuthenticationError
 
@@ -13,6 +15,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         super().__init__(*args, **kwargs)
         self.client = http_client or httpx.Client()
         self._owns_client = http_client is None
+        self.pin = SyncPinAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

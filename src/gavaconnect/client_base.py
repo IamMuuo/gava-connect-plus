@@ -7,7 +7,7 @@ from .exceptions import AuthenticationError
 
 ENVIRONMENTS = {
     "sandbox": "https://sbx.kra.go.ke",
-    "production": "https://kra.go.ke",
+    "production": "https://api.kra.go.ke",
 }
 
 

@@ -34,6 +34,12 @@ class InvoiceNotFoundError(GavaConnectError):
     pass
 
 
+class InvalidPINError(GavaConnectError):
+    """Raised when the provided KRA PIN is invalid (Response Code: 19005)."""
+
+    pass
+
+
 class TransientError(GavaConnectError):
     """Raised for server errors or timeouts where retrying is safe (Response Codes: 40005, 50000)."""
 
