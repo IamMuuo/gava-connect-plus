@@ -28,12 +28,6 @@ class RateLimitError(GavaConnectError):
     """Raised when the API rate limit is exceeded."""
 
 
-class InvalidTaxpayerIDError(GavaConnectError):
-    """Raised when the provided identification number does not exist (Response Code: 30002)."""
-
-    pass
-
-
 class InvalidStationPINError(GavaConnectError):
     """Raised when the provided PIN is inactive or wrong for station lookups (Response Code: 84002)."""
 
@@ -60,5 +54,11 @@ class TransientError(GavaConnectError):
 
 class ValidationError(GavaConnectError):
     """Raised when a gateway response fails Pydantic schema validation."""
+
+    pass
+
+
+class TaxpayerNotFoundError(GavaConnectError):
+    """Raised explicitly when KRA passes error code 30002 (Invalid ID)."""
 
     pass

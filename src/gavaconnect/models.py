@@ -1,5 +1,5 @@
 from decimal import Decimal
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
 from pydantic import BaseModel, Field
 
 
@@ -65,11 +65,6 @@ class InvoiceResponse(BaseModel):
     invoice_details: Optional[InvoiceDetails] = Field(None, alias="invoiceDetails")
 
 
-class IdLookupResponse(BaseModel):
-    taxpayer_pin: str = Field(alias="TaxpayerPIN")
-    taxpayer_name: str = Field(alias="TaxpayerName")
-
-
 class StationData(BaseModel):
     kra_pin: str = Field(alias="kraPin")
     station_name: str = Field(alias="stationName")
@@ -80,3 +75,18 @@ class StationResponse(BaseModel):
     message: str = Field(alias="Message")
     status: str = Field(alias="Status")
     station_data: StationData = Field(alias="STATIONDATA")
+
+
+TaxpayerType = Literal["KE", "NKE", "NKENRB", "COMP"]
+
+
+class PinLookupResponse(BaseModel):
+    """Pydantic model validating KRA PIN Checker by ID responses."""
+
+    taxpayer_pin: str = Field(..., alias="TaxpayerPIN")
+    taxpayer_name: str = Field(..., alias="TaxpayerName")
+
+    model_config = {
+        "populate_by_name": True,
+        "frozen": True,
+    }

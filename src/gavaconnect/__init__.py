@@ -10,7 +10,6 @@ from .exceptions import (
     APIError,
     RateLimitError,
     InvalidPINError,
-    InvalidTaxpayerIDError,
     InvalidStationPINError,
 )
 
@@ -24,7 +23,6 @@ __all__ = [
     "ValidationError",
     "RateLimitError",
     "APIError",
-    "InvalidTaxpayerIDError",
     "InvalidPINError",
     "InvalidStationPINError",
 ]

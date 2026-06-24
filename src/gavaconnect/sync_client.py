@@ -1,8 +1,11 @@
 import httpx
 
-from gavaconnect.apis.invoice import SyncInvoiceAPI
-from gavaconnect.apis.pin import SyncPinAPI
-from gavaconnect.apis.station import SyncStationAPI
+from gavaconnect.apis import (
+    SyncPinAPI,
+    SyncInvoiceAPI,
+    SyncStationAPI,
+    SyncPinLookupAPI,
+)
 
 from .client_base import SyncGavaConnectBase
 from .exceptions import AuthenticationError
@@ -20,6 +23,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.pin = SyncPinAPI(self)
         self.invoice = SyncInvoiceAPI(self)
         self.station = SyncStationAPI(self)
+        self.pin_lookup = SyncPinLookupAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

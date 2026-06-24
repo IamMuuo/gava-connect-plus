@@ -1,8 +1,12 @@
 import httpx
 
-from gavaconnect.apis.invoice import InvoiceAPI
-from gavaconnect.apis.pin import PinAPI
-from gavaconnect.apis.station import StationAPI
+
+from gavaconnect.apis import (
+    InvoiceAPI,
+    PinAPI,
+    PinLookupAPI,
+    StationAPI,
+)
 
 from .client_base import AsyncGavaConnectBase
 from .exceptions import AuthenticationError
@@ -20,6 +24,7 @@ class GavaConnect(AsyncGavaConnectBase):
         self.pin = PinAPI(self)
         self.invoice = InvoiceAPI(self)
         self.station = StationAPI(self)
+        self.pin_lookup = PinLookupAPI(self)
 
     async def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):
