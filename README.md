@@ -1,10 +1,14 @@
-
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/header/grid.svg?title=gava-connect-plus&amp;subtitle=unofficial+tax+compliance+SDK+for+kenyan+python+devs&amp;logo=python&amp;logoColor=085D37&amp;mode=dark" /><img alt="header" src="https://shieldcn.dev/header/grid.svg?title=gava-connect-plus&amp;subtitle=unofficial+tax+compliance+SDK+for+kenyan+python+devs&amp;logo=python&amp;logoColor=085D37&amp;mode=light" /></picture>
+  <img alt="gava-connect-plus banner" src="https://raw.githubusercontent.com/IamMuuo/gava-connect-plus/master/assets/github-header-banner.png" width="100%" />
 </p>
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/flag/ke.svg?theme=gray" /><img alt="built in" src="https://shieldcn.dev/flag/ke.svg?theme=gray&amp;mode=light" /></picture>
+  <a href="https://github.com/iammuuo/gava-connect-plus"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/iammuuo/gava-connect-plus/license.svg?theme=green" /><img alt="license" src="https://shieldcn.dev/github/iammuuo/gava-connect-plus/license.svg?theme=green&amp;mode=light" /></picture></a>
+  <a href="https://github.com/iammuuo/gava-connect-plus/commits"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/iammuuo/gava-connect-plus/last-commit.svg?theme=cyan" /><img alt="last commit" src="https://shieldcn.dev/github/iammuuo/gava-connect-plus/last-commit.svg?theme=cyan&amp;mode=light" /></picture></a>
+  <a href="https://github.com/iammuuo/gava-connect-plus/actions"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/iammuuo/gava-connect-plus/ci.svg" /><img alt="CI" src="https://shieldcn.dev/github/iammuuo/gava-connect-plus/ci.svg?mode=light" /></picture></a>
+  <a href="https://github.com/iammuuo/gava-connect-plus/graphs/contributors"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/iammuuo/gava-connect-plus/contributors.svg" /><img alt="contributors" src="https://shieldcn.dev/github/iammuuo/gava-connect-plus/contributors.svg?mode=light" /></picture></a>
+  <a href="https://github.com/iammuuo/gava-connect-plus"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/github/iammuuo/gava-connect-plus/stars.svg?theme=rose" /><img alt="stars" src="https://shieldcn.dev/github/iammuuo/gava-connect-plus/stars.svg?theme=rose&amp;mode=light" /></picture></a>
 </p>
 
 # gava-connect-plus
