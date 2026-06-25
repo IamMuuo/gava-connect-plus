@@ -58,5 +58,15 @@ class GavaConnect(AsyncGavaConnectBase):
             ) from e
 
     async def aclose(self) -> None:
+        """
+        Closes the underlying client if and only if the engine owns it
+        otherwise the caller is incharge of closing the underlying httpx client
+        """
         if self._owns_client:
             await self.client.aclose()
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.aclose()
