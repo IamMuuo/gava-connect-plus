@@ -112,7 +112,7 @@ with GavaConnect(environment="sandbox") as gava:
 If you are managing configuration objects programmatically at runtime (e.g., retrieving secrets from an encrypted vault), bypass the environment variables by injecting the multi-app map dictionary directly into the builder constructor:
 
 ```python
-from gavaconnect import GavaConnect
+from gavaconnect import GavaConnectSync
 
 # Map explicit credentials precisely to their module domain targets
 custom_config = {
@@ -129,6 +129,11 @@ custom_config = {
 with GavaConnect(environment="sandbox", **custom_config) as gava:
     station = gava.station.get("A001234567Z")
     print(f"Assigned Tax Station: {station.station_name}")
+
+# Notice that the above snippet uses the synchronous variant
+# of the library
+# 
+# All such synchronous blocking calls are used with the Sync suffix
 ```
 
 ---
@@ -150,7 +155,7 @@ from gavaconnect import GavaConnect
 
 async def main():
     # Non-blocking connection pooling executing natively inside your event loop
-    async with GavaConnectAsync(environment="sandbox") as gava:
+    async with GavaConnect(environment="sandbox") as gava:
         record = await gava.pin.check("A001234567Z")
         print(f"Async Identity Verified: {record.taxpayer_name}")
 
@@ -164,7 +169,7 @@ For applications built on standard blocking architectures, the synchronous engin
 ```python
 from gavaconnect import GavaConnectSync
 
-with GavaConnect(environment="sandbox") as gava:
+with GavaConnectSync(environment="sandbox") as gava:
     record = gava.pin.check("A001234567Z")
     print(f"Sync Identity Verified: {record.taxpayer_name}")
 
