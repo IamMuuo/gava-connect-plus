@@ -1,6 +1,6 @@
 from decimal import Decimal
 from typing import Any, List, Literal, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PinData(BaseModel):
@@ -33,6 +33,11 @@ class PinResponse(BaseModel):
 
 
 class InvoiceDetails(BaseModel):
+    model_config = ConfigDict(
+        json_encoders={
+            Decimal: str,
+        },
+    )
     sales_date: str = Field(alias="salesDate")
     transmission_date: str = Field(alias="transmissionDate")
     invoice_date: str = Field(alias="invoiceDate")
@@ -43,7 +48,9 @@ class InvoiceDetails(BaseModel):
     customer_pin: Optional[str] = Field(None, alias="customerPin")
     customer_name: Optional[str] = Field(None, alias="customerName")
     control_unit_invoice_number: str = Field(alias="controlUnitInvoiceNumber")
-    trader_system_invoice_number: str = Field(alias="traderSystemInvoiceNumber")
+    trader_system_invoice_number: Optional[str] = Field(
+        alias="traderSystemInvoiceNumber"
+    )
 
     # Enforcing Decimal for all monetary elements
     total_invoice_amount: Decimal = Field(alias="totalInvoiceAmount")
