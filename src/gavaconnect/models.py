@@ -1,6 +1,6 @@
 from decimal import Decimal
 from typing import Any, List, Literal, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PinData(BaseModel):
@@ -33,6 +33,11 @@ class PinResponse(BaseModel):
 
 
 class InvoiceDetails(BaseModel):
+    model_config = ConfigDict(
+        json_encoders={
+            Decimal: str,
+        },
+    )
     sales_date: str = Field(alias="salesDate")
     transmission_date: str = Field(alias="transmissionDate")
     invoice_date: str = Field(alias="invoiceDate")
