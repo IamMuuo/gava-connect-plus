@@ -43,7 +43,9 @@ class InvoiceDetails(BaseModel):
     customer_pin: Optional[str] = Field(None, alias="customerPin")
     customer_name: Optional[str] = Field(None, alias="customerName")
     control_unit_invoice_number: str = Field(alias="controlUnitInvoiceNumber")
-    trader_system_invoice_number: str = Field(alias="traderSystemInvoiceNumber")
+    trader_system_invoice_number: Optional[str] = Field(
+        alias="traderSystemInvoiceNumber"
+    )
 
     # Enforcing Decimal for all monetary elements
     total_invoice_amount: Decimal = Field(alias="totalInvoiceAmount")
