@@ -75,14 +75,28 @@ Once you have your isolated keys, gava-connect-plus takes complete control of th
 Expose your isolated sandbox or production credential pairs directly to your system shell thread. The library automatically tracks these exact environment keys, keeping your production secrets completely out of source control:
 
 ```bash
-# App #1: PIN Validation Credentials
+# App #1: PIN Checker by PIN Credentials
 export KRA_PIN_KEY="your_pin_app_consumer_key"
 export KRA_PIN_SECRET="your_pin_app_consumer_secret"
 
-# App #2: eTIMS Invoice Credentials
+# App #2: PIN Checker by ID Credentials
+export KRA_PIN_LOOKUP_KEY="your_pin_lookup_app_consumer_key"
+export KRA_PIN_LOOKUP_SECRET="your_pin_lookup_app_consumer_secret"
+
+# App #3: Know Your Station Credentials
+export KRA_STATION_KEY="your_station_app_consumer_key"
+export KRA_STATION_SECRET="your_station_app_consumer_secret"
+
+# App #4: eTIMS Invoice Credentials
 export KRA_INVOICE_KEY="your_invoice_app_consumer_key"
 export KRA_INVOICE_SECRET="your_invoice_app_consumer_secret"
+
+# App #5: Tax Obligations Fetcher Credentials
+export KRA_OBLIGATION_KEY="your_obligation_app_consumer_key"
+export KRA_OBLIGATION_SECRET="your_obligation_app_consumer_secret"
 ```
+
+> You only need to export the pairs for the modules you actually call. Each scope is resolved lazily, so a missing pair only raises `AuthenticationError` when that specific module is invoked — the rest of your app is unaffected.
 
 ## 2. Write Pure, Frictionless Python
 With your system environments aligned, initialize the workspace context. The library dynamically routes internal token handshakes to their respective apps in the background based on the API you invoke.
@@ -196,24 +210,24 @@ Below is the current state of alignment between the SDK and the official develop
 
 <div align="center">
 
-| Feature / API Endpoint | Status | Tested |
-| --- | --- | :---: |
-| Automated OAuth Token Lifecycle Management & Caching | ✅ | ✅ |
-| PIN Checker by PIN (`PIN_Validation_by_PIN`) | ✅ | ✅ |
-| PIN Checker by ID (`DTD_PINChecker`) | ✅ | ✅ |
-| Know KRA Tax Service Office/Station (`SUC-iTax-USSD_Know_Your_Station`) | ✅ | ✅ |
-| eTIMS Invoice Checker (`Invoice-Checker`) | ✅ | ✅ |
-| Fetch Taxpayer Obligations (`TaxPayer_Tax_Obligations_Fetcher`) | ⏳ Planned | - |
-| Withholding Tax PRN Generation (Income Tax, Rental, VAT) | ⏳ Planned | - |
-| Tax Compliance Certificate (TCC) Validation & Application | ⏳ Planned | - |
-| Automated NIL Return Filing (`iTax_NIL_Return`) | ⏳ Planned | - |
-| Income Tax & VAT Exemption Checker | ⏳ Planned | - |
-| Turnover Tax (TOT) Return Filing | ⏳ Planned | - |
-| Customs Declaration Status Checker & Tax Calculator | ⏳ Planned | - |
-| Import Certificate Checker (By Number / PIN) | ⏳ Planned | - |
-| Individual KRA PIN Registration Gateway | ⏳ Planned | - |
-| eTIMS OSCU Integrator Automated Testing Suite | ⏳ Planned | - |
-| Excise License Checker (By Pin / Certificate Number) | ⏳ Planned | - |
+| Feature / API Endpoint | Status | Tested | Required Env Vars |
+| --- | --- | :---: | --- |
+| Automated OAuth Token Lifecycle Management & Caching | ✅ | ✅ | *(per-scope, see below)* |
+| PIN Checker by PIN (`PIN_Validation_by_PIN`) | ✅ | ✅ | `KRA_PIN_KEY` / `KRA_PIN_SECRET` |
+| PIN Checker by ID (`DTD_PINChecker`) | ✅ | ✅ | `KRA_PIN_LOOKUP_KEY` / `KRA_PIN_LOOKUP_SECRET` |
+| Know KRA Tax Service Office/Station (`SUC-iTax-USSD_Know_Your_Station`) | ✅ | ✅ | `KRA_STATION_KEY` / `KRA_STATION_SECRET` |
+| eTIMS Invoice Checker (`Invoice-Checker`) | ✅ | ✅ | `KRA_INVOICE_KEY` / `KRA_INVOICE_SECRET` |
+| Fetch Taxpayer Obligations (`TaxPayer_Tax_Obligations_Fetcher`) | ✅ | ✅ | `KRA_OBLIGATION_KEY` / `KRA_OBLIGATION_SECRET` |
+| Withholding Tax PRN Generation (Income Tax, Rental, VAT) | ⏳ Planned | - | - |
+| Tax Compliance Certificate (TCC) Validation & Application | ⏳ Planned | - | - |
+| Automated NIL Return Filing (`iTax_NIL_Return`) | ⏳ Planned | - | - |
+| Income Tax & VAT Exemption Checker | ⏳ Planned | - | - |
+| Turnover Tax (TOT) Return Filing | ⏳ Planned | - | - |
+| Customs Declaration Status Checker & Tax Calculator | ⏳ Planned | - | - |
+| Import Certificate Checker (By Number / PIN) | ⏳ Planned | - | - |
+| Individual KRA PIN Registration Gateway | ⏳ Planned | - | - |
+| eTIMS OSCU Integrator Automated Testing Suite | ⏳ Planned | - | - |
+| Excise License Checker (By Pin / Certificate Number) | ⏳ Planned | - | - |
 
 </div>
 
