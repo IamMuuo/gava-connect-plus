@@ -97,3 +97,18 @@ class PinLookupResponse(BaseModel):
         "populate_by_name": True,
         "frozen": True,
     }
+
+
+class ObligationData(BaseModel):
+    obligation_id: str = Field(alias="obligationId")
+    obligation_name: str = Field(alias="obligationName")
+    obligation_type: str = Field(alias="obligationType")
+
+
+class ObligationResponse(BaseModel):
+    response_code: str = Field(alias="ResponseCode")
+    message: str = Field(alias="ResponseMsg")
+    status: str = Field(alias="Status")
+    obligations_list: List[ObligationData] = Field(
+        default_factory=list, alias="ObligationsList"
+    )
