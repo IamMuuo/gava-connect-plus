@@ -6,6 +6,7 @@ from gavaconnect.apis import (
     SyncStationAPI,
     SyncPinLookupAPI,
     SyncObligationAPI,
+    SyncNilReturnAPI,
 )
 
 from .client_base import SyncGavaConnectBase
@@ -26,6 +27,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.station = SyncStationAPI(self)
         self.pin_lookup = SyncPinLookupAPI(self)
         self.obligation = SyncObligationAPI(self)
+        self.nil_return = SyncNilReturnAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

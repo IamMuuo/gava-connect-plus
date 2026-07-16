@@ -3,6 +3,7 @@ import httpx
 
 from gavaconnect.apis import (
     InvoiceAPI,
+    NilReturnAPI,
     ObligationAPI,
     PinAPI,
     PinLookupAPI,
@@ -27,6 +28,7 @@ class GavaConnect(AsyncGavaConnectBase):
         self.station = StationAPI(self)
         self.pin_lookup = PinLookupAPI(self)
         self.obligation = ObligationAPI(self)
+        self.nil_return = NilReturnAPI(self)
 
     async def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

@@ -112,3 +112,19 @@ class ObligationResponse(BaseModel):
     obligations_list: List[ObligationData] = Field(
         default_factory=list, alias="ObligationsList"
     )
+
+
+ObligationCode = Literal["1", "2", "3", "4", "5", "6", "7", "8"]
+
+
+class NilReturnResult(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    response_code: str = Field(alias="ResponseCode")
+    message: str = Field(alias="Message")
+    status: str = Field(alias="Status")
+    ack_number: str = Field(alias="AckNumber")
+
+
+class NilReturnResponse(BaseModel):
+    result: NilReturnResult = Field(alias="RESPONSE")
