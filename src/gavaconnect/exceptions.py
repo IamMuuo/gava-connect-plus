@@ -68,3 +68,9 @@ class InvalidObligationPINError(GavaConnectError):
     """Raised when the provided PIN is invalid for obligation lookups (Response Code: 20001)."""
 
     pass
+
+
+class NilReturnValidationError(GavaConnectError):
+    """Raised when KRA rejects a NIL return submission (Error Code: 82002)."""
+
+    pass

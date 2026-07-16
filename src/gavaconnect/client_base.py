@@ -25,6 +25,7 @@ class BaseGavaConnect(ABC):
         station: Optional[AuthConfig] = None,
         pin_lookup: Optional[AuthConfig] = None,
         obligation: Optional[AuthConfig] = None,
+        nil_return: Optional[AuthConfig] = None,
     ) -> None:
         if environment not in ENVIRONMENTS:
             raise ValueError(f"Environment must be one of: {list(ENVIRONMENTS.keys())}")
@@ -36,6 +37,7 @@ class BaseGavaConnect(ABC):
             "station": station,
             "pin_lookup": pin_lookup,
             "obligation": obligation,
+            "nil_return": nil_return,
         }
         self.token_cache: dict[str, dict[str, Any]] = {}
 
