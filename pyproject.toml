@@ -3,8 +3,35 @@ name = "gava-connect-plus"
 version = "0.4.0"
 description = "Async-first production-grade SDK for Kenya's GavaConnect Enterprise API platform."
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Erick", email = "hearteric57@gmail.com" }
+]
+keywords = [
+    "kra",
+    "kenya",
+    "etims",
+    "itax",
+    "tax",
+    "tax-compliance",
+    "revenue-authority",
+    "sdk",
+    "api-client",
+    "pin-checker",
+    "gava-connect",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 requires-python = ">=3.11"
 dependencies = [
@@ -14,6 +41,13 @@ dependencies = [
     "pytest>=9.1.1",
     "respx>=0.23.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/IamMuuo/gava-connect-plus"
+Repository = "https://github.com/IamMuuo/gava-connect-plus"
+Documentation = "https://github.com/IamMuuo/gava-connect-plus#readme"
+Issues = "https://github.com/IamMuuo/gava-connect-plus/issues"
+Changelog = "https://github.com/IamMuuo/gava-connect-plus/releases"
 
 [build-system]
 requires = ["uv_build>=0.11.23,<0.12.0"]
