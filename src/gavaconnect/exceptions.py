@@ -62,3 +62,9 @@ class TaxpayerNotFoundError(GavaConnectError):
     """Raised explicitly when KRA passes error code 30002 (Invalid ID)."""
 
     pass
+
+
+class InvalidObligationPINError(GavaConnectError):
+    """Raised when the provided PIN is invalid for obligation lookups (Response Code: 20001)."""
+
+    pass

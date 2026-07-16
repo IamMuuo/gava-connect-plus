@@ -5,6 +5,7 @@ from gavaconnect.apis import (
     SyncInvoiceAPI,
     SyncStationAPI,
     SyncPinLookupAPI,
+    SyncObligationAPI,
 )
 
 from .client_base import SyncGavaConnectBase
@@ -24,6 +25,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.invoice = SyncInvoiceAPI(self)
         self.station = SyncStationAPI(self)
         self.pin_lookup = SyncPinLookupAPI(self)
+        self.obligation = SyncObligationAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):
