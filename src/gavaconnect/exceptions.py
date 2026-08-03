@@ -74,3 +74,15 @@ class NilReturnValidationError(GavaConnectError):
     """Raised when KRA rejects a NIL return submission (Error Code: 82002)."""
 
     pass
+
+
+class InvalidExemptionPINError(GavaConnectError):
+    """Raised when the provided KRA PIN is invalid for exemption checks (Response Code: 600)."""
+
+    pass
+
+
+class ExemptionNotFoundError(GavaConnectError):
+    """Raised when the taxpayer has no valid exemption certificate (Response Code: 900)."""
+
+    pass

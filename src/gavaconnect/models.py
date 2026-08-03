@@ -128,3 +128,20 @@ class NilReturnResult(BaseModel):
 
 class NilReturnResponse(BaseModel):
     result: NilReturnResult = Field(alias="RESPONSE")
+
+
+class ExemptionData(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    response_code: str = Field(alias="response_code")
+    response_message: str = Field(alias="response_message")
+    status_code: Optional[str] = Field(None, alias="status_code")
+    cert_no: Optional[str] = Field(None, alias="cert_no")
+    cert_expiry_date: Optional[str] = Field(None, alias="cert_expiry_date")
+    cert_eff_date: Optional[str] = Field(None, alias="cert_eff_date")
+    cert_issue_date: Optional[int] = Field(None, alias="cert_issue_date")
+
+    @property
+    def is_exempt(self) -> bool:
+        """Returns True if the taxpayer holds a valid Income Tax/VAT exemption certificate."""
+        return self.response_code.strip() == "200"
