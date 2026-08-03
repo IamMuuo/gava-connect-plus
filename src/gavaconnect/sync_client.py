@@ -1,6 +1,7 @@
 import httpx
 
 from gavaconnect.apis import (
+    SyncExciseLicenseAPI,
     SyncExemptionAPI,
     SyncPinAPI,
     SyncInvoiceAPI,
@@ -30,6 +31,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.obligation = SyncObligationAPI(self)
         self.nil_return = SyncNilReturnAPI(self)
         self.exemption = SyncExemptionAPI(self)
+        self.excise_license = SyncExciseLicenseAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):
