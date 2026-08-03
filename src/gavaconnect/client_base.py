@@ -27,6 +27,7 @@ class BaseGavaConnect(ABC):
         obligation: Optional[AuthConfig] = None,
         nil_return: Optional[AuthConfig] = None,
         exemption: Optional[AuthConfig] = None,
+        excise_license: Optional[AuthConfig] = None,
     ) -> None:
         if environment not in ENVIRONMENTS:
             raise ValueError(f"Environment must be one of: {list(ENVIRONMENTS.keys())}")
@@ -40,6 +41,7 @@ class BaseGavaConnect(ABC):
             "obligation": obligation,
             "nil_return": nil_return,
             "exemption": exemption,
+            "excise_license": excise_license,
         }
         self.token_cache: dict[str, dict[str, Any]] = {}
 

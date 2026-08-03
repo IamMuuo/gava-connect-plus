@@ -2,6 +2,7 @@ import httpx
 
 
 from gavaconnect.apis import (
+    ExciseLicenseAPI,
     ExemptionAPI,
     InvoiceAPI,
     NilReturnAPI,
@@ -31,6 +32,7 @@ class GavaConnect(AsyncGavaConnectBase):
         self.obligation = ObligationAPI(self)
         self.nil_return = NilReturnAPI(self)
         self.exemption = ExemptionAPI(self)
+        self.excise_license = ExciseLicenseAPI(self)
 
     async def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

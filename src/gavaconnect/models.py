@@ -145,3 +145,24 @@ class ExemptionData(BaseModel):
     def is_exempt(self) -> bool:
         """Returns True if the taxpayer holds a valid Income Tax/VAT exemption certificate."""
         return self.response_code.strip() == "200"
+
+
+class ExciseLicenseData(BaseModel):
+    status: str = Field(alias="Status")
+    class_of_goods: str = Field(alias="ClassOfGoods")
+    taxpayer_name: str = Field(alias="TaxpayerName")
+    date_of_issue: str = Field(alias="DateOfIssue")
+    excise_licence_no: str = Field(alias="ExciseLicenceNo")
+    pin_no: str = Field(alias="PINNo")
+
+    @property
+    def is_approved(self) -> bool:
+        """Returns True if the excise licence's status is Approved."""
+        return self.status.strip().lower() == "approved"
+
+
+class ExciseLicenseResponse(BaseModel):
+    response_code: str = Field(alias="ResponseCode")
+    message: str = Field(alias="Message")
+    status: str = Field(alias="Status")
+    excise_license_data: ExciseLicenseData = Field(alias="ExciseLicenseDATA")

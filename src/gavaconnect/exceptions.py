@@ -86,3 +86,9 @@ class ExemptionNotFoundError(GavaConnectError):
     """Raised when the taxpayer has no valid exemption certificate (Response Code: 900)."""
 
     pass
+
+
+class InvalidExciseLicenseError(GavaConnectError):
+    """Raised when the provided Excise License Certificate Number is invalid (Response Code: 80002)."""
+
+    pass
