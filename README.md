@@ -98,6 +98,10 @@ export KRA_OBLIGATION_SECRET="your_obligation_app_consumer_secret"
 # App #6: NIL Return Filing Credentials
 export KRA_NIL_RETURN_KEY="your_nil_return_app_consumer_key"
 export KRA_NIL_RETURN_SECRET="your_nil_return_app_consumer_secret"
+
+# App #7: Income Tax & VAT Exemption Checker Credentials
+export KRA_EXEMPTION_KEY="your_exemption_app_consumer_key"
+export KRA_EXEMPTION_SECRET="your_exemption_app_consumer_secret"
 ```
 
 > You only need to export the pairs for the modules you actually call. Each scope is resolved lazily, so a missing pair only raises `AuthenticationError` when that specific module is invoked — the rest of your app is unaffected.
@@ -225,7 +229,7 @@ Below is the current state of alignment between the SDK and the official develop
 | Withholding Tax PRN Generation (Income Tax, Rental, VAT) | ⏳ Planned | - | - |
 | Tax Compliance Certificate (TCC) Validation & Application | ⏳ Planned | - | - |
 | Automated NIL Return Filing (`iTax_NIL_Return`) | ✅ | ✅ | `KRA_NIL_RETURN_KEY` / `KRA_NIL_RETURN_SECRET` |
-| Income Tax & VAT Exemption Checker | ⏳ Planned | - | - |
+| Income Tax & VAT Exemption Checker | ✅ | ✅ | `KRA_EXEMPTION_KEY` / `KRA_EXEMPTION_SECRET` |
 | Turnover Tax (TOT) Return Filing | ⏳ Planned | - | - |
 | Customs Declaration Status Checker & Tax Calculator | ⏳ Planned | - | - |
 | Import Certificate Checker (By Number / PIN) | ⏳ Planned | - | - |
