@@ -106,6 +106,10 @@ export KRA_EXEMPTION_SECRET="your_exemption_app_consumer_secret"
 # App #8: Excise License Checker By Certificate Number Credentials
 export KRA_EXCISE_LICENSE_KEY="your_excise_license_app_consumer_key"
 export KRA_EXCISE_LICENSE_SECRET="your_excise_license_app_consumer_secret"
+
+# App #9: Individual KRA PIN Registration Credentials
+export KRA_PIN_REGISTRATION_KEY="your_pin_registration_app_consumer_key"
+export KRA_PIN_REGISTRATION_SECRET="your_pin_registration_app_consumer_secret"
 ```
 
 > You only need to export the pairs for the modules you actually call. Each scope is resolved lazily, so a missing pair only raises `AuthenticationError` when that specific module is invoked — the rest of your app is unaffected.
@@ -237,7 +241,7 @@ Below is the current state of alignment between the SDK and the official develop
 | Turnover Tax (TOT) Return Filing | ⏳ Planned | - | - |
 | Customs Declaration Status Checker & Tax Calculator | ⏳ Planned | - | - |
 | Import Certificate Checker (By Number / PIN) | ⏳ Planned | - | - |
-| Individual KRA PIN Registration Gateway | ⏳ Planned | - | - |
+| Individual KRA PIN Registration Gateway | ✅ | ✅ | `KRA_PIN_REGISTRATION_KEY` / `KRA_PIN_REGISTRATION_SECRET` |
 | eTIMS OSCU Integrator Automated Testing Suite | ⏳ Planned | - | - |
 | Excise License Checker (By Certificate Number) | ✅ | ✅ | `KRA_EXCISE_LICENSE_KEY` / `KRA_EXCISE_LICENSE_SECRET` |
 | Excise License Checker (By PIN) | ⏳ Planned | - | - |
