@@ -92,3 +92,9 @@ class InvalidExciseLicenseError(GavaConnectError):
     """Raised when the provided Excise License Certificate Number is invalid (Response Code: 80002)."""
 
     pass
+
+
+class PinRegistrationValidationError(GavaConnectError):
+    """Raised when KRA rejects a PIN registration submission (Error Code: 80002)."""
+
+    pass

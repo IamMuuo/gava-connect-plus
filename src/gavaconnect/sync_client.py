@@ -7,6 +7,7 @@ from gavaconnect.apis import (
     SyncInvoiceAPI,
     SyncStationAPI,
     SyncPinLookupAPI,
+    SyncPinRegistrationAPI,
     SyncObligationAPI,
     SyncNilReturnAPI,
 )
@@ -32,6 +33,7 @@ class GavaConnectSync(SyncGavaConnectBase):
         self.nil_return = SyncNilReturnAPI(self)
         self.exemption = SyncExemptionAPI(self)
         self.excise_license = SyncExciseLicenseAPI(self)
+        self.pin_registration = SyncPinRegistrationAPI(self)
 
     def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

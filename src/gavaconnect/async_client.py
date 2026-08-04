@@ -9,6 +9,7 @@ from gavaconnect.apis import (
     ObligationAPI,
     PinAPI,
     PinLookupAPI,
+    PinRegistrationAPI,
     StationAPI,
 )
 
@@ -33,6 +34,7 @@ class GavaConnect(AsyncGavaConnectBase):
         self.nil_return = NilReturnAPI(self)
         self.exemption = ExemptionAPI(self)
         self.excise_license = ExciseLicenseAPI(self)
+        self.pin_registration = PinRegistrationAPI(self)
 
     async def get_valid_token(self, scope: str) -> str:
         if self._cache_valid(scope):

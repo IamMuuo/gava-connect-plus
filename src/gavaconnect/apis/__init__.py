@@ -5,6 +5,7 @@ from gavaconnect.apis.nil_return import NilReturnAPI, SyncNilReturnAPI
 from gavaconnect.apis.obligation import ObligationAPI, SyncObligationAPI
 from gavaconnect.apis.pin import PinAPI, SyncPinAPI
 from gavaconnect.apis.pin_lookup import PinLookupAPI, SyncPinLookupAPI
+from gavaconnect.apis.pin_registration import PinRegistrationAPI, SyncPinRegistrationAPI
 from gavaconnect.apis.station import StationAPI, SyncStationAPI
 
 __all__ = [
@@ -12,6 +13,8 @@ __all__ = [
     "SyncExciseLicenseAPI",
     "ExemptionAPI",
     "SyncExemptionAPI",
+    "PinRegistrationAPI",
+    "SyncPinRegistrationAPI",
     "InvoiceAPI",
     "SyncInvoiceAPI",
     "NilReturnAPI",
