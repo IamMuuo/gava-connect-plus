@@ -166,3 +166,19 @@ class ExciseLicenseResponse(BaseModel):
     message: str = Field(alias="Message")
     status: str = Field(alias="Status")
     excise_license_data: ExciseLicenseData = Field(alias="ExciseLicenseDATA")
+
+
+IsPinWithNoObligation = Literal["Yes", "No"]
+
+
+class PinRegistrationResult(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    response_code: str = Field(alias="ResponseCode")
+    message: str = Field(alias="Message")
+    status: str = Field(alias="Status")
+    pin: str = Field(alias="PIN")
+
+
+class PinRegistrationResponse(BaseModel):
+    result: PinRegistrationResult = Field(alias="RESPONSE")
